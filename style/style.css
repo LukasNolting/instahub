@@ -370,7 +370,10 @@ html {
   font-weight: 600;
   width: 80%;
   color: #737373;
-  padding-left: 5px;
+}
+
+.input-comment:focus {
+  outline: none;
 }
 
 .button-comment {
