@@ -40,14 +40,14 @@ html {
 }
 
 .headline-sidebar-left {
-  color: white;
+  color: #F5F5F5;
   font-family: "Dancing Script";
   font-size: 32px;
   font-weight: bold;
 }
 
 .slogan-sidebar-left {
-  color: white;
+  color: #F5F5F5;
   font-family: "Dancing Script";
   font-size: 16px;
   font-weight: bold;
@@ -79,7 +79,7 @@ html {
 }
 
 .menu-sidebar-left-text {
-  color: white;
+  color: #F5F5F5;
   font-weight: 300;
   line-height: 1.34;
 }
@@ -102,7 +102,7 @@ html {
 }
 
 .content-left {
-  width: 80%;
+  margin: 0px 50px;
 }
 
 .content-left-head {
@@ -114,7 +114,7 @@ html {
 
 .text-white-16-bold {
   font-size: 16px;
-  color: white;
+  color: #F5F5F5;
   font-weight: bold;
   padding: 20px 0;
   text-decoration: none;
@@ -130,8 +130,9 @@ html {
 
 .content-left-profiles {
   display: flex;
-  gap: 15px;
-  padding: 15px;
+  justify-content: space-between;
+  margin: 15px 0px;
+  gap:10px;
 }
 
 .profile {
@@ -139,10 +140,11 @@ html {
   flex-direction: column;
   align-items: center;
   gap: 6px;
+  text-decoration: none;
 }
 
 .text-white-12 {
-  color: white;
+  color: #F5F5F5;
   font-size: 12px;
 }
 
@@ -161,4 +163,71 @@ html {
     linear-gradient(to right, rgb(0, 49, 139), rgb(204, 50, 140)) border-box;
   border-radius: 50%;
   border: 3px solid transparent;
+}
+
+.content-right{
+  padding-left: 64px;
+  height: 100%;
+}
+
+.content-right-img{
+  height: 44px;
+  width: 44px;
+  object-fit: cover;
+}
+
+.content-right-profile-container{
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+  gap:3px;
+}
+
+.text-white-12-bold{
+  font-size: 12px;
+  color: #F5F5F5;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.text-grey-12-bold{
+  font-size: 12px;
+  color:#969696;
+  font-weight: 600;
+}
+
+.text-grey-12{
+  font-size: 12px;
+  color:#969696;
+}
+
+.content-right-head-container{
+  display: flex;
+  align-items: center;
+  gap:10px;
+  margin-top: 36px;
+}
+
+.text-blue-12-bold{
+  text-decoration: none;
+  font-size: 12px;
+  color: #0085DB;
+  font-weight: 600;
+}
+
+
+.text-white-12-bold {
+  color: #F5F5F5;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.content-right-suggestions-head{
+  display: flex;
+  justify-content: space-between;
+}
+
+.content-right-suggestions{
+  margin-top: 24px;
 }
