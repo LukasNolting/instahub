@@ -1,0 +1,164 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: "Raleway";
+}
+
+.main-container {
+  display: flex;
+}
+
+/* Sidebar left */
+
+.sidebar-left {
+  width: 250px;
+  border-right: 1px solid #262626;
+  height: calc(100dvh - 40px);
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 8px 20px 10px;
+  position: sticky;
+}
+
+.head-sidebar-left {
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+}
+
+.logo-sidebar-left {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  margin-left: 15px;
+}
+
+.headline-sidebar-left {
+  color: white;
+  font-family: "Dancing Script";
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.slogan-sidebar-left {
+  color: white;
+  font-family: "Dancing Script";
+  font-size: 16px;
+  font-weight: bold;
+  padding: 3px 0 0 12px;
+}
+
+.menu-sidebar-left {
+  margin: 20px 0 0 0;
+}
+
+.menu-sidebar-left-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 4px 0;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.menu-sidebar-left-box:hover {
+  background-color: #262626;
+  border-radius: 10px;
+}
+
+.menu-sidebar-left-icon {
+  height: 24px;
+  width: 24px;
+  object-fit: cover;
+}
+
+.menu-sidebar-left-text {
+  color: white;
+  font-weight: 300;
+  line-height: 1.34;
+}
+
+.round {
+  border-radius: 50%;
+}
+
+/* End Sidebar left */
+
+/* Content Mid */
+
+.content {
+  height: calc(100dvh - 22px);
+  width: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  padding-top: 22px;
+}
+
+.content-left {
+  width: 80%;
+}
+
+.content-left-head {
+  width: auto;
+  display: flex;
+  gap: 15px;
+  border-bottom: 1px solid #262626;
+}
+
+.text-white-16-bold {
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  padding: 20px 0;
+  text-decoration: none;
+}
+
+.text-grey-16-bold {
+  font-size: 16px;
+  color: #737373;
+  font-weight: bold;
+  padding: 20px 0;
+  text-decoration: none;
+}
+
+.content-left-profiles {
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.text-white-12 {
+  color: white;
+  font-size: 12px;
+}
+
+.profile-img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.module-border-wrap {
+  height: 58px;
+  width: 58px;
+  object-fit: cover;
+  background: linear-gradient(rgb(235, 230, 230), rgb(224, 215, 215))
+      padding-box,
+    linear-gradient(to right, rgb(0, 49, 139), rgb(204, 50, 140)) border-box;
+  border-radius: 50%;
+  border: 3px solid transparent;
+}
