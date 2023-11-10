@@ -1,8 +1,7 @@
-<div class="card">
+        <div class="card">
               <div class="card-head">
                 <img
-                  src="./img/profiles/ChatGPT.svg"
-                  alt="ChatGPT"
+                  src=${post["image"]}
                   class="profile-img module-border-wrap-32 pointer"
                   onclick="noFunction()"
                 />
@@ -12,14 +11,14 @@
                       href="#"
                       onclick="noFunction()"
                       class="text-white-14-bold"
-                      >ChatGPT</a
+                      >${post["name"]}</a
                     >
                     <span class="text-grey-12-bold">•</span>
-                    <span class="text-grey-12-bold">3 Std.</span>
+                    <span class="text-grey-12-bold">${post["time"]}</span>
                   </div>
                   <div>
                     <a href="#" onclick="noFunction()" class="text-white-12"
-                      >San Francisco</a
+                      >${post["location"]}</a
                     >
                   </div>
                 </div>
@@ -33,7 +32,7 @@
               </div>
 
               <img
-                src="./img/profiles/ChatGPT.svg"
+                src=${post["image"]}
                 alt="img"
                 class="card-img"
               />
@@ -69,19 +68,21 @@
                   class="card-icon-bottom-36"
                 />
               </div>
-              <div class="padding-tb-8 pointer">
-                <span class="text-white-14-bold">Gefällt 1.582 Mal</span>
+              <div class="pointer padding-tb-8">
+                <div class="text-white-14-bold padding-tb-8">Gefällt ${post["likes"]} Mal</div>
+                <div class="flex">
+                <div class="text-white-14-bold">${post.name}</div> 
+                <span class="text-white-14"> ${post.headline}</span>
+                </div>
               </div>
-              <div class="card-comment">
-                <span class="text-white-14-bold margin-r-4 pointer">ChatGPT</span>
-                <span class="text-white-14">Test</span>
+              <div class="card-comment" id="comments${i}">
               </div>
               <div class="card-comments padding-tb-8">
-                <span class="text-grey-14" onclick="noFunction()">Alle 12 Kommentare ansehen</span>
+                <span class="text-grey-14" onclick="noFunction()">Alle ${post["commentCount"]} Kommentare ansehen</span>
               </div>
               <div class="comment-input-container padding-b-8">
-                <input type="text" placeholder="Kommentieren ...." class="input-comment" />
-                <button class="button-comment padding-tb-8">Posten</button>
+                <input type="text" placeholder="Kommentieren ...." class="input-comment" id="input${i}" required/>
+                <button class="button-comment padding-tb-8" onclick="addComment(${i})">Posten</button>
               </div>
             </div>
           </div>

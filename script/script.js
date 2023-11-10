@@ -1,60 +1,54 @@
 let posts = [
   {
     name: "Angular",
+    namePost: "User123",
     time: "4 Std.",
     location: "Kalifornien",
     likes: 1582,
+    liked: false,
+    saved: false,
     commentCount: 25,
     headline: "Die Angular Developer sind jetzt bei InstaHub!",
-    comments: [
-      "Angular ist ein TypeScript-basiertes Webframework.",
-      "Angular ist ein Frontend-Framework für die Entwicklung von Webanwendungen.",
-      "Angular ist ein leistungsstarkes Webentwicklungsframework.",
-    ],
+    comments: ["Angular ist ein TypeScript-basiertes Webframework."],
     image: "./img/profiles/Angular.svg",
   },
   {
     name: "GIT",
+    namePost: "User123",
     time: "3 Std.",
     location: "Brooklyn",
     likes: 1878,
+    liked: false,
+    saved: false,
     commentCount: 85,
     headline: "Heute schon gepusht?",
-    comments: [
-      "Git ist ein Versionskontrollsystem für Entwickler.",
-      "Git ist ein Entwicklungs-Tool zur Versionskontrolle.",
-      "Git ist ein Versionsverwaltungssystem.",
-    ],
+    comments: ["Git ist ein Versionskontrollsystem für Entwickler."],
     image: "./img/profiles/GIT.svg",
   },
   {
     name: "JavaScript",
+    namePost: "User123",
     time: "8 Std.",
     location: "Kalifornien",
     likes: 954,
+    liked: false,
+    saved: false,
     commentCount: 12,
-    headline:
-      "Warum mag JavaScript keine Beziehungen? Weil es immer 'null' bedeutet!",
-    comments: [
-      "JavaScript ist eine Web-Programmiersprache.",
-      "JavaScript ist eine Browser-Programmiersprache.",
-      "JavaScript ist eine gängige Web-Scripting-Sprache.",
-    ],
+    headline: "function",
+    comments: ["JavaScript ist eine Web-Programmiersprache."],
     image: "./img/profiles/JavaScript.svg",
   },
   {
     name: "HTML",
+    namePost: "User123",
     time: "2 Std.",
     location: "Cambridge",
     likes: 1023,
+    liked: false,
+    saved: false,
     commentCount: 14,
-    headline:
-      "Warum ist HTML so unaufgeregt? Weil es nur 'Tag's über Tags spricht!",
-    comments: [
-      "HTML ist die Sprache des Webs.",
-      "HTML ist die Basis für Webseiten.",
-      "HTML strukturiert das Web.",
-    ],
+    headline: "div",
+    comments: ["HTML ist die Sprache des Webs."],
     image: "./img/profiles/HTML.svg",
   },
 ];
@@ -62,16 +56,6 @@ let posts = [
 function noFunction() {
   alert("Aktuell keine Funktion! Danke für dein Verständnis! :)");
 }
-
-// FUNCTIONS CARD
-// `
-//         <div class="card">
-//             <h2>${land["name"]}</h2>
-
-//             <div id="landcontent${i}"></div>
-//             <input id="input${i}"><button onclick="addComment(${i})">OK</button>
-//         </div>
-//     `;
 
 function render() {
   let content = document.getElementById("card-container");
@@ -150,19 +134,21 @@ function render() {
                   class="card-icon-bottom-36"
                 />
               </div>
-              <div class="padding-tb-8 pointer">
-                <span class="text-white-14-bold">Gefällt ${post["likes"]} Mal</span>
+              <div class="pointer padding-tb-8">
+                <div class="text-white-14-bold padding-tb-8">Gefällt ${post["likes"]} Mal</div>
+                <div class="flex">
+                <div class="text-white-14-bold">${post.name}</div> 
+                <span class="text-white-14"> ${post.headline}</span>
+                </div>
               </div>
-              <div class="card-comment" id="comments">
-                <span class="text-white-14-bold margin-r-4 pointer">${post["name"]}</span>
-                <span class="text-white-14">Test</span>
+              <div class="card-comment" id="comments${i}">
               </div>
               <div class="card-comments padding-tb-8">
                 <span class="text-grey-14" onclick="noFunction()">Alle ${post["commentCount"]} Kommentare ansehen</span>
               </div>
               <div class="comment-input-container padding-b-8">
-                <input type="text" placeholder="Kommentieren ...." class="input-comment" />
-                <button class="button-comment padding-tb-8">Posten</button>
+                <input type="text" placeholder="Kommentieren ...." class="input-comment" id="input${i}" required/>
+                <button class="button-comment padding-tb-8" onclick="addComment(${i})">Posten</button>
               </div>
             </div>
           </div>
@@ -172,15 +158,19 @@ function render() {
 
     for (let j = 0; j < post["comments"].length; j++) {
       const comment = post["comments"][j];
-      comments.innerHTML += `<div>${comment}</div>`;
+      comments.innerHTML += `<div class="text-white-14 padding-tb-8 flex"><div><b>${post.namePost}</b></div><div>${comment}</div></div>`;
     }
   }
-  render();
 }
 
 function addComment(index) {
   let input = document.getElementById(`input${index}`);
-  posts[index]["comments"].push(input.value);
-  render();
-  input.value = "";
+
+  if (input.value != "") {
+    posts[index]["comments"].push(input.value);
+    render();
+    input.value = "";
+  } else {
+    alert("Bitte Text eingeben!");
+  }
 }

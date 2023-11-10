@@ -362,6 +362,10 @@ html {
   margin-right: 4px;
 }
 
+.margin-tb-8 {
+  margin: 8px 0;
+}
+
 .input-comment {
   border: none;
   background-color: black;
@@ -403,4 +407,10 @@ html {
 
 .pointer{
   cursor: pointer;
+}
+
+.flex{
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
