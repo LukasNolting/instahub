@@ -37,20 +37,7 @@ let posts = [
     headline: "function",
     comments: ["JavaScript ist eine Web-Programmiersprache."],
     image: "./img/profiles/JavaScript.svg",
-  },
-  {
-    name: "HTML",
-    namePost: "User123",
-    time: "2 Std.",
-    location: "Cambridge",
-    likes: 1023,
-    liked: false,
-    saved: false,
-    commentCount: 14,
-    headline: "div",
-    comments: ["HTML ist die Sprache des Webs."],
-    image: "./img/profiles/HTML.svg",
-  },
+  }
 ];
 
 function noFunction() {
@@ -109,6 +96,7 @@ function render() {
                     src="./img/icons/Heart.png"
                     alt="heart"
                     class="card-icon-bottom"
+                    onload="like()"
                   />
                   <img
                     src="./img/icons/heart-red.png"
@@ -172,5 +160,58 @@ function addComment(index) {
     input.value = "";
   } else {
     alert("Bitte Text eingeben!");
+  }
+}
+
+function bookmark(i) {
+  let isTrue = posts[i].bookmark;
+  let bookmarkIcon = document.getElementById(`bookmark${i}`);
+
+  if (!isTrue) {
+    posts[i].bookmark = true;
+    bookmarkIcon.classList.remove("bookmark");
+    bookmarkIcon.classList.add("bookmark-active");
+  } else {
+    posts[i].bookmark = false;
+    bookmarkIcon.classList.add("bookmark");
+    bookmarkIcon.classList.remove("bookmark-active");
+  }
+  saveToLs();
+  render();
+}
+
+
+function likeBtn(i) {
+  let like = posts[i].likes;
+  let isLiked = posts[i].liked;
+  let heartIcon = document.getElementById(`like${i}`);
+
+  if (!isLiked) {
+    like++;
+    posts[i].liked = true;
+    heartIcon.classList.add("like-icon-active");
+  } else {
+    like--;
+    posts[i].likes = like;
+    posts[i].liked = false;
+    heartIcon.classList.remove("like-icon-active");
+  }
+
+  posts[i].likes = like;
+  saveToLs();
+  init();
+}
+
+
+function saveToLs() {
+  localStorage.setItem("posts", JSON.stringify(posts));
+}
+
+
+function loadFromLs() {
+  let storageAsText = localStorage.getItem("posts");
+
+  if (storageAsText) {
+    posts = JSON.parse(storageAsText);
   }
 }
