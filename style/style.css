@@ -5,6 +5,7 @@
 
 *::-webkit-scrollbar {
   width: 13px;
+  height: 10px;
 }
 
 *::-webkit-scrollbar-track {
@@ -16,6 +17,7 @@
   border-radius: 5px;
   border: 2px double black;
 }
+
 
 html {
   scroll-behavior: smooth;
@@ -465,7 +467,7 @@ html {
 
 @media (max-width: 1250px) {
   .content-left {
-    margin: 0 20px 0 0;
+    margin: 0 30px 0 0;
   }
   .content {
     justify-content: space-between;
@@ -531,24 +533,26 @@ html {
     margin-left: 0;
   }
   .sidebar-left {
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
     height: 40px;
     width: 100%;
-    border-bottom: 1px solid #262626
+    border-bottom: 1px solid #262626;
   }
   .box-top {
     display: flex;
     align-items: center;
+    width: 100%;
+    justify-content: space-between;
   }
   .menu-sidebar-left {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 500px;
+    width: 100%;
     margin: 0;
-    gap:15px;
+    padding: 0 20px;
   }
   .box-bottom {
     display: none;
@@ -562,39 +566,54 @@ html {
 }
 
 @media (max-width: 600px) {
-
-  .module-border-wrap{height: 35px;
-  width: 35px;}
-  .content-left-profiles{gap:0;
-  justify-content: space-around;}
-  .menu-sidebar-left{
+  .module-border-wrap {
+    height: 35px;
+    width: 35px;
+  }
+  .content-left-profiles {
+    gap: 0;
     justify-content: space-around;
   }
-  .menu-sidebar-left-box{padding:5px;}
-  .sidebar-left{padding: 0;}
-  .content-left-head{display: none;}
-  .content{margin-top: 20px;
-  width: 100%;}
-  .card{margin: 10px 0;}
-  .placeholder-cont{display: none;}
-
+  .menu-sidebar-left {
+    justify-content: space-around;
+  }
+  .menu-sidebar-left-box {
+    padding: 5px;
+  }
+  .sidebar-left {
+    padding: 0;
+  }
+  .content-left-head {
+    display: none;
+  }
+  .content {
+    margin-top: 20px;
+    width: 100%;
+  }
+  .card {
+    margin: 10px 0;
+  }
+  .placeholder-cont {
+    display: none;
+  }
 }
 
 @media (max-width: 500px) {
-
-
-.menu-sidebar-left{justify-content: center;
-gap:20px;
-align-items: center;}
-.content-left-profiles{
-  overflow-x: scroll;
-padding:0;
-justify-content: flex-start;}
-.content-left{width: 90%;}
-
-
+  .menu-sidebar-left {
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  .content-left-profiles {
+    overflow-x: scroll;
+    padding: 0;
+    justify-content: space-between;
+    gap:10px;
+  }
+  .content-left {
+    width: 90%;
+  }
+  .profile{padding-bottom: 7px;}
 }
 
-@media (max-width: 430px) {
-  .menu-sidebar-left{gap:0;}
-}
+
