@@ -29,6 +29,41 @@ let posts = [
 
 loadFromLocalStorage();
 
+
+
+function noFunction() {
+  alert("Aktuell keine Funktion! Danke für dein Verständnis! :)");
+}
+
+function render() {
+  let content = document.getElementById("card-container");
+  content.innerHTML = "";
+
+  for (let i = 0; i < posts.length; i++) {
+    const post = posts[i];
+    content.innerHTML += card(i);
+
+    let comments = document.getElementById(`comments${i}`);
+
+    for (let j = 0; j < post["comments"].length; j++) {
+      const comment = post["comments"][j];
+      comments.innerHTML += `<div class="text-white-14 padding-tb-8 flex"><span><b>${post.namePost}</b>  ${comment}</span></div>`;
+    }
+
+    if (post["liked"]) {
+      document.getElementById(`like${i}`).classList.add("like-active");
+    } else {
+      document.getElementById(`like${i}`).classList.add("like-icon");
+    }
+
+    if (post["saved"]) {
+      document.getElementById(`saved${i}`).classList.add("saved-active");
+    } else {
+      document.getElementById(`saved${i}`).classList.add("saved");
+    }
+  }
+}
+
 function card(i) {
   let post = posts[i];
   return /*html*/ `
@@ -108,39 +143,6 @@ function card(i) {
             </div>
           
         `;
-}
-
-function noFunction() {
-  alert("Aktuell keine Funktion! Danke für dein Verständnis! :)");
-}
-
-function render() {
-  let content = document.getElementById("card-container");
-  content.innerHTML = "";
-
-  for (let i = 0; i < posts.length; i++) {
-    const post = posts[i];
-    content.innerHTML += card(i);
-
-    let comments = document.getElementById(`comments${i}`);
-
-    for (let j = 0; j < post["comments"].length; j++) {
-      const comment = post["comments"][j];
-      comments.innerHTML += `<div class="text-white-14 padding-tb-8 flex"><span><b>${post.namePost}</b>  ${comment}</span></div>`;
-    }
-
-    if (post["liked"]) {
-      document.getElementById(`like${i}`).classList.add("like-active");
-    } else {
-      document.getElementById(`like${i}`).classList.add("like-icon");
-    }
-
-    if (post["saved"]) {
-      document.getElementById(`saved${i}`).classList.add("saved-active");
-    } else {
-      document.getElementById(`saved${i}`).classList.add("saved");
-    }
-  }
 }
 
 function likeCheck(i) {
