@@ -1,88 +1,75 @@
-        <div class="card">
-              <div class="card-head">
-                <img
-                  src=${post["image"]}
-                  class="profile-img module-border-wrap-32 pointer"
-                  onclick="noFunction()"
-                />
-                <div class="card-head-text">
-                  <div>
-                    <a
-                      href="#"
-                      onclick="noFunction()"
-                      class="text-white-14-bold"
-                      >${post["name"]}</a
-                    >
-                    <span class="text-grey-12-bold">•</span>
-                    <span class="text-grey-12-bold">${post["time"]}</span>
-                  </div>
-                  <div>
-                    <a href="#" onclick="noFunction()" class="text-white-12"
-                      >${post["location"]}</a
-                    >
-                  </div>
-                </div>
-                <a href="#" onclick="noFunction()"
-                  ><img
-                    src="./img/icons/dots-horizontal.png"
-                    alt="dots-horizontal"
-                    class="card-icon"
-                  />
-                </a>
-              </div>
+<div class="card">
+  <div class="card-head">
+    <img src=${post["image"]} class="profile-img module-border-wrap-32 pointer"
+    onclick="noFunction()" />
+    <div class="card-head-text">
+      <div>
+        <a href="#" onclick="noFunction()" class="text-white-14-bold"
+          >${post["name"]}</a
+        >
+        <span class="text-grey-12-bold">•</span>
+        <span class="text-grey-12-bold">${post["time"]}</span>
+      </div>
+      <div>
+        <a href="#" onclick="noFunction()" class="text-white-12"
+          >${post["location"]}</a
+        >
+      </div>
+    </div>
+    <a href="#" onclick="noFunction()"
+      ><img
+        src="./img/icons/dots-horizontal.png"
+        alt="dots-horizontal"
+        class="card-icon"
+      />
+    </a>
+  </div>
 
-              <img
-                src=${post["image"]}
-                alt="img"
-                class="card-img"
-              />
+  <img alt="img" class="card-img" />
 
-              <div class="icons-card-bottom">
-                <div class="card-icon-bottom-left">
-                  <img
-                    src="./img/icons/Heart.png"
-                    alt="heart"
-                    class="card-icon-bottom"
-                  />
-                  <img
-                    src="./img/icons/heart-red.png"
-                    alt="heart"
-                    class="card-icon-bottom d-none"
-                  />
-                  <img
-                    src="./img/icons/comment.png"
-                    alt="comment"
-                    class="card-icon-bottom"
-                    onclick="noFunction()"
-                  />
-                  <img
-                    src="./img/icons/messages.png"
-                    alt="share"
-                    class="card-icon-bottom-24"
-                    onclick="noFunction()"
-                  />
-                </div>
-                <img
-                  src="./img/icons/save.png"
-                  alt="save"
-                  class="card-icon-bottom-36"
-                />
-              </div>
-              <div class="pointer padding-tb-8">
-                <div class="text-white-14-bold padding-tb-8">Gefällt ${post["likes"]} Mal</div>
-                <div class="flex">
-                <div class="text-white-14-bold">${post.name}</div> 
-                <span class="text-white-14"> ${post.headline}</span>
-                </div>
-              </div>
-              <div class="card-comment" id="comments${i}">
-              </div>
-              <div class="card-comments padding-tb-8">
-                <span class="text-grey-14" onclick="noFunction()">Alle ${post["commentCount"]} Kommentare ansehen</span>
-              </div>
-              <div class="comment-input-container padding-b-8">
-                <input type="text" placeholder="Kommentieren ...." class="input-comment" id="input${i}" required/>
-                <button class="button-comment padding-tb-8" onclick="addComment(${i})">Posten</button>
-              </div>
-            </div>
-          </div>
+  <div class="icons-card-bottom">
+    <div class="card-icon-bottom-left">
+      <div id="like${i}" onclick="likeBtn()" class="like-icon"></div>
+      <img
+        src="./img/icons/comment.png"
+        alt="comment"
+        class="card-icon-bottom pointer"
+        onclick="noFunction()"
+      />
+      <img
+        src="./img/icons/messages.png"
+        alt="share"
+        class="card-icon-bottom-24"
+        onclick="noFunction()"
+      />
+    </div>
+    <div id="bookmark${i}" onclick="bookmark()" class="bookmark"></div>
+  </div>
+  <div class="pointer padding-tb-8">
+    <div class="text-white-14-bold padding-tb-8">
+      Gefällt ${post["likes"]} Mal
+    </div>
+    <div class="flex">
+      <div class="text-white-14-bold">${post.name}</div>
+      <span class="text-white-14"> ${post.headline}</span>
+    </div>
+  </div>
+  <div class="card-comment" id="comments${i}"></div>
+  <div class="card-comments padding-tb-8">
+    <span class="text-grey-14" onclick="noFunction()"
+      >Alle ${post["commentCount"]} Kommentare ansehen</span
+    >
+  </div>
+  <div class="comment-input-container padding-b-8">
+    <input
+      type="text"
+      placeholder="Kommentieren ...."
+      class="input-comment"
+      id="input${i}"
+      required
+    />
+    <button class="button-comment padding-tb-8" onclick="addComment()">
+      Posten
+    </button>
+  </div>
+</div>

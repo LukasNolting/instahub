@@ -25,32 +25,13 @@ let posts = [
     comments: ["Git ist ein Versionskontrollsystem für Entwickler."],
     image: "./img/profiles/GIT.svg",
   },
-  {
-    name: "JavaScript",
-    namePost: "User123",
-    time: "8 Std.",
-    location: "Kalifornien",
-    likes: 954,
-    liked: false,
-    saved: false,
-    commentCount: 12,
-    headline: "function",
-    comments: ["JavaScript ist eine Web-Programmiersprache."],
-    image: "./img/profiles/JavaScript.svg",
-  }
 ];
 
-function noFunction() {
-  alert("Aktuell keine Funktion! Danke für dein Verständnis! :)");
-}
+loadFromLocalStorage();
 
-function render() {
-  let content = document.getElementById("card-container");
-  content.innerHTML = "";
-
-  for (let i = 0; i < posts.length; i++) {
-    const post = posts[i];
-    content.innerHTML += /*html*/ `
+function card(i) {
+  let post = posts[i];
+  return /*html*/ `
         <div class="card">
               <div class="card-head">
                 <img
@@ -92,21 +73,11 @@ function render() {
 
               <div class="icons-card-bottom">
                 <div class="card-icon-bottom-left">
-                  <img
-                    src="./img/icons/Heart.png"
-                    alt="heart"
-                    class="card-icon-bottom"
-                    onload="like()"
-                  />
-                  <img
-                    src="./img/icons/heart-red.png"
-                    alt="heart"
-                    class="card-icon-bottom d-none"
-                  />
+                  <div id="like${i}" onclick="likeCheck(${i})" class="like-icon"></div>
                   <img
                     src="./img/icons/comment.png"
                     alt="comment"
-                    class="card-icon-bottom"
+                    class="card-icon-bottom pointer"
                     onclick="noFunction()"
                   />
                   <img
@@ -116,17 +87,13 @@ function render() {
                     onclick="noFunction()"
                   />
                 </div>
-                <img
-                  src="./img/icons/save.png"
-                  alt="save"
-                  class="card-icon-bottom-36"
-                />
+                <div id="saved${i}" onclick="saved(${i})" class="saved"></div>
               </div>
               <div class="pointer padding-tb-8">
                 <div class="text-white-14-bold padding-tb-8">Gefällt ${post["likes"]} Mal</div>
                 <div class="flex">
-                <div class="text-white-14-bold">${post.name}</div> 
-                <span class="text-white-14"> ${post.headline}</span>
+                  <span class="text-white-14"><b>${post.name}</b> ${post.headline}</span>
+                  
                 </div>
               </div>
               <div class="card-comment" id="comments${i}">
@@ -139,16 +106,81 @@ function render() {
                 <button class="button-comment padding-tb-8" onclick="addComment(${i})">Posten</button>
               </div>
             </div>
-          </div>
+          
         `;
+}
+
+function noFunction() {
+  alert("Aktuell keine Funktion! Danke für dein Verständnis! :)");
+}
+
+function render() {
+  let content = document.getElementById("card-container");
+  content.innerHTML = "";
+
+  for (let i = 0; i < posts.length; i++) {
+    const post = posts[i];
+    content.innerHTML += card(i);
 
     let comments = document.getElementById(`comments${i}`);
 
     for (let j = 0; j < post["comments"].length; j++) {
       const comment = post["comments"][j];
-      comments.innerHTML += `<div class="text-white-14 padding-tb-8 flex"><div><b>${post.namePost}</b></div><div>${comment}</div></div>`;
+      comments.innerHTML += `<div class="text-white-14 padding-tb-8 flex"><span><b>${post.namePost}</b>  ${comment}</span></div>`;
+    }
+
+    if (post["liked"]) {
+      document.getElementById(`like${i}`).classList.add("like-active");
+    } else {
+      document.getElementById(`like${i}`).classList.add("like-icon");
+    }
+
+    if (post["saved"]) {
+      document.getElementById(`saved${i}`).classList.add("saved-active");
+    } else {
+      document.getElementById(`saved${i}`).classList.add("saved");
     }
   }
+}
+
+function likeCheck(i) {
+  let like = posts[i].likes;
+  let liked = posts[i].liked;
+  let likedIcon = document.getElementById(`like${i}`);
+
+  if (!liked) {
+    like++;
+    posts[i].liked = true;
+    likedIcon.classList.remove("like-icon");
+    likedIcon.classList.add("like-active");
+  } else {
+    like--;
+    posts[i].likes = like;
+    posts[i].liked = false;
+    likedIcon.classList.remove("like-active");
+    likedIcon.classList.add("like-icon");
+  }
+
+  posts[i].likes = like;
+  saveToLocalStorage();
+  render();
+}
+
+function saved(i) {
+  let isTrue = posts[i].saved;
+  let savedIcon = document.getElementById(`saved${i}`);
+
+  if (!isTrue) {
+    posts[i].saved = true;
+    savedIcon.classList.remove("saved");
+    savedIcon.classList.add("saved-active");
+  } else {
+    posts[i].saved = false;
+    savedIcon.classList.add("saved");
+    savedIcon.classList.remove("saved-active");
+  }
+  saveToLocalStorage();
+  render();
 }
 
 function addComment(index) {
@@ -161,54 +193,15 @@ function addComment(index) {
   } else {
     alert("Bitte Text eingeben!");
   }
-}
-
-function bookmark(i) {
-  let isTrue = posts[i].bookmark;
-  let bookmarkIcon = document.getElementById(`bookmark${i}`);
-
-  if (!isTrue) {
-    posts[i].bookmark = true;
-    bookmarkIcon.classList.remove("bookmark");
-    bookmarkIcon.classList.add("bookmark-active");
-  } else {
-    posts[i].bookmark = false;
-    bookmarkIcon.classList.add("bookmark");
-    bookmarkIcon.classList.remove("bookmark-active");
-  }
-  saveToLs();
+  saveToLocalStorage();
   render();
 }
 
-
-function likeBtn(i) {
-  let like = posts[i].likes;
-  let isLiked = posts[i].liked;
-  let heartIcon = document.getElementById(`like${i}`);
-
-  if (!isLiked) {
-    like++;
-    posts[i].liked = true;
-    heartIcon.classList.add("like-icon-active");
-  } else {
-    like--;
-    posts[i].likes = like;
-    posts[i].liked = false;
-    heartIcon.classList.remove("like-icon-active");
-  }
-
-  posts[i].likes = like;
-  saveToLs();
-  init();
-}
-
-
-function saveToLs() {
+function saveToLocalStorage() {
   localStorage.setItem("posts", JSON.stringify(posts));
 }
 
-
-function loadFromLs() {
+function loadFromLocalStorage() {
   let storageAsText = localStorage.getItem("posts");
 
   if (storageAsText) {
