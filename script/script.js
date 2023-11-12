@@ -29,8 +29,6 @@ let posts = [
 
 loadFromLocalStorage();
 
-
-
 function noFunction() {
   alert("Aktuell keine Funktion! Danke für dein Verständnis! :)");
 }
@@ -50,17 +48,11 @@ function render() {
       comments.innerHTML += `<div class="text-white-14 padding-tb-8 flex"><span><b>${post.namePost}</b>  ${comment}</span></div>`;
     }
 
-    if (post["liked"]) {
-      document.getElementById(`like${i}`).classList.add("like-active");
-    } else {
-      document.getElementById(`like${i}`).classList.add("like-icon");
-    }
+    let likeIconCSS = post["liked"] ? "like-active" : "like-icon";
+    document.getElementById(`like${i}`).classList.add(likeIconCSS);
 
-    if (post["saved"]) {
-      document.getElementById(`saved${i}`).classList.add("saved-active");
-    } else {
-      document.getElementById(`saved${i}`).classList.add("saved");
-    }
+    let savedCSS = post["saved"] ? "saved-active" : "saved";
+    document.getElementById(`saved${i}`).classList.add(savedCSS);
   }
 }
 
